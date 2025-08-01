@@ -3,146 +3,35 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>AFGamesYT - Welcome!</title>
+        <title>AFGamesYT</title>
+        <link href="https://fonts.googleapis.com/css2?family=DynaPuff:wght@400..700&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="static/style.css">
-        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     </head>
     <body>
-        <header class="header">
-            <nav class="navbar">
-                <div class="nav-brand">AFGamesYT</div>
-                <ul class="nav-menu">
-                    <li><a href="#home" class="nav-link">Home</a></li>
-                    <li><a href="#about" class="nav-link">About</a></li>
-                    <li><a href="#projects" class="nav-link">Projects</a></li>
-                    <li><a href="#contact" class="nav-link">Contact</a></li>
-                </ul>
-            </nav>
-        </header>
+        <div class="top-bar">
+            <h1 class="afgames-text">AFGames</h1>
+            <a href="https://discord.gg/7HDqtKxbqU" target="_blank" class="discord-link">
+                <img src="static/discord.png" alt="Discord" class="discord-icon">
+            </a>
+        </div>
+        
+        <br><br><br><br><br><br><br><br><br><br>
 
-        <main>
-            <section id="home" class="hero">
-                <div class="hero-content">
-                    <h1 class="hero-title">Welcome to AFGamesYT</h1>
-                    <p class="hero-subtitle">Creating amazing content and sharing the gaming experience!</p>
-                    <div class="hero-buttons">
-                        <button class="btn btn-primary">Explore Projects</button>
-                        <button class="btn btn-secondary">Watch Videos</button>
-                    </div>
-                </div>
-                <div class="hero-image">
-                    <div class="floating-card card-1"></div>
-                    <div class="floating-card card-2"></div>
-                    <div class="floating-card card-3"></div>
-                </div>
-            </section>
+        <label>About Me</label>
+        <div class="message"><p>I am a Python/JavaScript/Java developer.</p></div>
+        <div class="message"><p>I can speak English, Latvian and Russian.</p></div>
+        <div class="message"><p>I am from Latvia.</p></div>
 
-            <section id="about" class="about">
-                <div class="container">
-                    <h2 class="section-title">About Me</h2>
-                    <div class="about-content">
-                        <div class="about-text">
-                            <p>I'm passionate about gaming and content creation. Join me on this exciting journey!</p>
-                            <div class="stats">
-                                <div class="stat-item">
-                                    <span class="stat-number">100+</span>
-                                    <span class="stat-label">Videos</span>
-                                </div>
-                                <div class="stat-item">
-                                    <span class="stat-number">10K+</span>
-                                    <span class="stat-label">Subscribers</span>
-                                </div>
-                                <div class="stat-item">
-                                    <span class="stat-number">50+</span>
-                                    <span class="stat-label">Games</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="about-image">
-                            <div class="profile-card">
-                                <div class="profile-avatar"></div>
-                                <h3>AFGamesYT</h3>
-                                <p>Content Creator & Gamer</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
+        <label>My Hard Skills:</label>
+        <div class="message"><p>Python (frontend and backend)</p></div>
+        <div class="message"><p>Tkinter, Flask, SQLite and more.</p></div>
 
-            <section id="projects" class="projects">
-                <div class="container">
-                    <h2 class="section-title">Featured Projects</h2>
-                    <div class="project-grid">
-                        <div class="project-card">
-                            <div class="project-image project-1"></div>
-                            <div class="project-content">
-                                <h3>Gaming Highlights</h3>
-                                <p>Best moments from my gaming sessions</p>
-                                <button class="btn btn-outline">Watch Now</button>
-                            </div>
-                        </div>
-                        <div class="project-card">
-                            <div class="project-image project-2"></div>
-                            <div class="project-content">
-                                <h3>Game Reviews</h3>
-                                <p>Honest reviews of the latest games</p>
-                                <button class="btn btn-outline">Read More</button>
-                            </div>
-                        </div>
-                        <div class="project-card">
-                            <div class="project-image project-3"></div>
-                            <div class="project-content">
-                                <h3>Live Streams</h3>
-                                <p>Join me for live gaming sessions</p>
-                                <button class="btn btn-outline">Join Live</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section id="contact" class="contact">
-                <div class="container">
-                    <h2 class="section-title">Get In Touch</h2>
-                    <div class="contact-content">
-                        <div class="contact-info">
-                            <div class="contact-item">
-                                <div class="contact-icon">📧</div>
-                                <div>
-                                    <h3>Email</h3>
-                                    <p>contact@afgamesyt.com</p>
-                                </div>
-                            </div>
-                            <div class="contact-item">
-                                <div class="contact-icon">🎮</div>
-                                <div>
-                                    <h3>YouTube</h3>
-                                    <p>@AFGamesYT</p>
-                                </div>
-                            </div>
-                            <div class="contact-item">
-                                <div class="contact-icon">🐦</div>
-                                <div>
-                                    <h3>Twitter</h3>
-                                    <p>@AFGamesYT</p>
-                                </div>
-                            </div>
-                        </div>
-                        <form class="contact-form">
-                            <input type="text" placeholder="Your Name" class="form-input">
-                            <input type="email" placeholder="Your Email" class="form-input">
-                            <textarea placeholder="Your Message" class="form-textarea"></textarea>
-                            <button type="submit" class="btn btn-primary">Send Message</button>
-                        </form>
-                    </div>
-                </div>
-            </section>
-        </main>
-
-        <footer class="footer">
-            <div class="container">
-                <p>&copy; 2024 AFGamesYT. All rights reserved.</p>
-            </div>
-        </footer>
+        <label>My Soft Skills:</label>
+        <div class="message"><p>Communication</p></div>
+        <div class="message"><p>Leadership</p></div>
+        <div class="message"><p>Time Management</p></div>
+        
+        <label>My Projects:</label>
+        <div class="message"><p>Soon!</p></div>
     </body>
 </html>
