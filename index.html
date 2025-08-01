@@ -9,7 +9,12 @@
     </head>
     <body>
         <div class="top-bar">
-            <h1 class="afgames-text">AFGames</h1>
+            <div class="left-section">
+                <div class="profile-icon">
+                    <img src="static/profile.png" alt="Profile" class="profile-image">
+                </div>
+                <h1 class="afgames-text">AFGames</h1>
+            </div>
             <a href="https://discord.gg/7HDqtKxbqU" target="_blank" class="discord-link">
                 <img src="static/discord.png" alt="Discord" class="discord-icon">
             </a>
@@ -32,6 +37,49 @@
         <div class="message"><p>Time Management</p></div>
         
         <h2>My GitHub Projects</h2>
-        <div class="message"><p>Soon!</p></div>
+        <div id="github-projects" class="projects-container">
+            <div class="loading">Loading projects...</div>
+        </div>
     </body>
+
+    <script>
+        const apiUrl = `https://api.github.com/users/AFGamesYT/repos?sort=updated&per_page=6`;
+
+        async function loadGitHubProjects() {
+            try {
+                const response = await fetch(apiUrl);
+                const repos = await response.json();
+                
+                const projectsContainer = document.getElementById('github-projects');
+                projectsContainer.innerHTML = '';
+                
+                repos.forEach(repo => {
+                    const projectCard = createProjectCard(repo);
+                    projectsContainer.appendChild(projectCard);
+                });
+                
+            } catch (error) {
+                console.error('Error loading GitHub projects:', error);
+                document.getElementById('github-projects').innerHTML = 
+                    '<div class="message"><p>Cant load projects right now.</p></div>';
+            }
+        }
+
+        function createProjectCard(repo) {
+            const card = document.createElement('div');
+            card.className = 'message project-card';
+            
+            card.innerHTML = `
+                <div class="project-header">
+                    <h3 class="project-title">${repo.name}</h3>
+                </div>
+                <label class="project-description">${repo.description || 'No description available.'}</label><br><br>
+                <a href="${repo.html_url}" target="_blank" class="project-link">View on GitHub</a>
+            `;
+            
+            return card;
+        }
+
+        document.addEventListener('DOMContentLoaded', loadGitHubProjects);
+    </script>
 </html>
