@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Download</title>
+<style>
+  :root {
+    color-scheme: light;
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  html { scroll-padding-top: env(safe-area-inset-top, 0px); }
+  body {
+    margin: 0;
+    padding: 24px;
+    background: #ffffff;
+    color: #000000;
+    font-family: "Times New Roman", Times, serif;
+    font-size: 16px;
+    line-height: 1.4;
+  }
+  .layout {
+    display: flex;
+    gap: 40px;
+    align-items: flex-start;
+  }
+  .left {
+    flex: 0 0 220px;
+  }
+  .right {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+  a.button {
+    display: inline-block;
+    padding: 6px 12px;
+    background: #ffffff;
+    color: #000000;
+    border: 2px solid #000000;
+    border-radius: 0;
+    font-family: inherit;
+    font-size: 16px;
+    text-decoration: none;
+  }
+  a.button:hover { background: #000000; color: #ffffff; }
+  h2 { font-size: 20px; margin: 0 0 12px 0; }
+  .version { margin: 0 0 16px 0; }
+  .version b { font-weight: bold; }
+  @media (max-width: 600px) {
+    .layout { flex-direction: column; gap: 24px; }
+    .left { flex: none; }
+  }
+</style>
+</head>
+<body>
+<div class="layout">
+
+  <div class="left">
+    <a class="button" href="https://afgamesyt.eu.pythonanywhere.com/get_program?version=latest">Download latest version</a>
+  </div>
+
+  <div class="right">
+    <h2>Version history</h2>
+
+    <p class="version"><b>0.3 (latest):</b> Polished it up! Improved the GUI</p>
+
+    <p class="version"><b>0.2:</b> Added calendar</p>
+
+    <p class="version"><b>0.1:</b> -</p>
+  </div>
+
+</div>
+</body>
+</html>
