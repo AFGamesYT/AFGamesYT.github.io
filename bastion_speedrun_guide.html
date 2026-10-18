@@ -1,0 +1,720 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Bastion Speedrun Hell</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bungee+Shade&family=Comic+Neue:wght@700&family=Pacifico&family=Press+Start+2P&display=swap">
+<style>
+/* Layout concept: one loud column, every block fighting the one before it for attention */
+:root {
+  --hot-pink: #ff00c8;
+  --acid: #b6ff00;
+  --cyan: #00fff2;
+  --yellow: #fff200;
+  --red: #ff0019;
+  --blue: #1a00ff;
+  --black: #000000;
+  --white: #ffffff;
+  --orange: #ff7a00;
+  --purple: #8000ff;
+  --font-display: "Bungee Shade", Impact, "Arial Black", sans-serif;
+  --font-body: "Comic Neue", "Comic Sans MS", "Chalkboard SE", cursive;
+  --font-script: "Pacifico", "Brush Script MT", cursive;
+  --font-pixel: "Press Start 2P", "Courier New", monospace;
+  color-scheme: light;
+}
+
+* { box-sizing: border-box; cursor: crosshair; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  padding-block: 12px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  background:
+    repeating-linear-gradient(45deg, var(--hot-pink) 0 30px, var(--acid) 30px 60px, var(--cyan) 60px 90px, var(--yellow) 90px 120px, var(--purple) 120px 150px, var(--orange) 150px 180px);
+  background-size: 400px 400px;
+  animation: slide-bg 1.5s linear infinite, hue 6s linear infinite;
+  color: var(--black);
+  font-family: var(--font-body);
+  font-size: 19px;
+  line-height: 1.35;
+  overflow-x: clip;
+}
+
+@keyframes slide-bg { to { background-position: 400px 400px; } }
+@keyframes hue { to { filter: hue-rotate(360deg) saturate(2.5); } }
+@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes spin-rev { to { transform: rotate(-360deg); } }
+@keyframes wobble {
+  0%, 100% { transform: rotate(-3deg) scale(1); }
+  25% { transform: rotate(2deg) scale(1.02); }
+  50% { transform: rotate(-1deg) scale(0.98); }
+  75% { transform: rotate(3deg) scale(1.01); }
+}
+@keyframes blink { 50% { opacity: 0; } }
+@keyframes flash {
+  0% { background: var(--red); color: var(--yellow); }
+  33% { background: var(--cyan); color: var(--hot-pink); }
+  66% { background: var(--yellow); color: var(--blue); }
+  100% { background: var(--red); color: var(--yellow); }
+}
+@keyframes rainbow-text { to { background-position: 400% 0; } }
+@keyframes marquee { from { transform: translateX(100%); } to { transform: translateX(-100%); } }
+@keyframes pulse { 50% { transform: scale(1.25); } }
+@keyframes borders {
+  0% { border-color: var(--red) var(--blue) var(--acid) var(--hot-pink); }
+  50% { border-color: var(--blue) var(--acid) var(--hot-pink) var(--red); }
+  100% { border-color: var(--red) var(--blue) var(--acid) var(--hot-pink); }
+}
+
+::-webkit-scrollbar { width: 28px; }
+::-webkit-scrollbar-track { background: var(--black); }
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(var(--red), var(--yellow), var(--acid), var(--cyan), var(--hot-pink));
+  border: 4px dotted var(--black);
+}
+
+:focus-visible { outline: 8px dashed var(--red); outline-offset: 4px; }
+
+a { color: var(--blue); background: var(--yellow); font-weight: 700; padding: 0 4px; }
+a:hover { color: var(--yellow); background: var(--blue); }
+
+/* language switching */
+html[data-lang="en"] .ru { display: none !important; }
+html[data-lang="ru"] .en { display: none !important; }
+
+.wrap {
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  min-width: 0;
+  overflow-x: clip;
+}
+
+/* top bar */
+.langbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  padding: 10px;
+  background: var(--black);
+  border: 8px double var(--yellow);
+  animation: wobble 2s ease-in-out infinite;
+}
+.langbar button {
+  font-family: var(--font-pixel);
+  font-size: 16px;
+  padding: 14px 18px;
+  color: var(--yellow);
+  background: var(--red);
+  border: 6px outset var(--cyan);
+  animation: flash 0.8s steps(1) infinite;
+  text-transform: uppercase;
+}
+.langbar button[aria-pressed="true"] { border-style: inset; animation: flash 0.3s steps(1) infinite, pulse 0.6s ease-in-out infinite; }
+.langbar button:hover { animation: spin 0.6s linear infinite; }
+
+.ticker {
+  overflow: hidden;
+  background: var(--blue);
+  border-block: 10px dotted var(--yellow);
+  padding: 8px 0;
+  white-space: nowrap;
+}
+.ticker span {
+  display: inline-block;
+  font-family: var(--font-pixel);
+  font-size: 18px;
+  color: var(--acid);
+  text-shadow: 3px 3px 0 var(--red), -3px -3px 0 var(--hot-pink);
+  animation: marquee 9s linear infinite;
+}
+
+/* hero */
+.hero {
+  text-align: center;
+  padding: 18px 8px;
+  background: radial-gradient(circle, var(--yellow), var(--hot-pink), var(--blue));
+  border: 14px ridge var(--orange);
+  animation: borders 1s linear infinite;
+}
+h1 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(34px, 9vw, 76px);
+  line-height: 1;
+  text-wrap: balance;
+  background: linear-gradient(90deg, var(--red), var(--yellow), var(--acid), var(--cyan), var(--blue), var(--hot-pink), var(--red));
+  background-size: 400% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-stroke: 3px var(--black);
+  animation: rainbow-text 1.2s linear infinite, wobble 1.5s ease-in-out infinite;
+}
+.hero .sub {
+  display: inline-block;
+  margin: 16px 0 0;
+  padding: 6px 12px;
+  font-family: var(--font-script);
+  font-size: 24px;
+  color: var(--cyan);
+  background: var(--black);
+  transform: rotate(-4deg);
+}
+.version {
+  display: inline-block;
+  margin: 14px 0 0;
+  padding: 8px 14px;
+  font-family: var(--font-pixel);
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--black);
+  background: var(--acid);
+  border: 6px dashed var(--red);
+  animation: pulse 0.9s ease-in-out infinite;
+}
+.spinner-row {
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+  margin-top: 14px;
+  font-size: 44px;
+}
+.spinner-row span { display: inline-block; animation: spin 1.2s linear infinite; }
+.spinner-row span:nth-child(even) { animation: spin-rev 0.7s linear infinite; }
+
+.hint {
+  font-family: var(--font-pixel);
+  font-size: 12px;
+  line-height: 1.6;
+  background: var(--black);
+  color: var(--acid);
+  padding: 10px;
+  border: 5px dashed var(--hot-pink);
+}
+.blink { animation: blink 0.5s steps(1) infinite; }
+
+/* sections */
+section {
+  padding: 16px;
+  border: 12px groove var(--black);
+  min-width: 0;
+}
+section:nth-of-type(6n+1) { background: var(--acid); color: var(--purple); }
+section:nth-of-type(6n+2) { background: var(--hot-pink); color: var(--yellow); }
+section:nth-of-type(6n+3) { background: var(--cyan); color: var(--red); }
+section:nth-of-type(6n+4) { background: var(--black); color: var(--orange); }
+section:nth-of-type(6n+5) { background: var(--yellow); color: var(--blue); }
+section:nth-of-type(6n) { background: var(--purple); color: var(--acid); }
+
+h2 {
+  display: block;
+  width: fit-content;
+  max-width: 100%;
+  margin: 6px auto 16px;
+  padding: 6px 14px;
+  font-family: var(--font-display);
+  font-size: clamp(24px, 6vw, 44px);
+  line-height: 1.05;
+  text-align: center;
+  text-wrap: balance;
+  color: var(--yellow);
+  background: var(--red);
+  text-shadow: 4px 4px 0 var(--blue), -2px -2px 0 var(--acid);
+  border: 6px dotted var(--white);
+  animation: spin 7s linear infinite;
+}
+h3 {
+  margin: 14px 0 8px;
+  font-family: var(--font-script);
+  font-size: 28px;
+  font-weight: 400;
+  text-shadow: 3px 3px 0 var(--black);
+  display: inline-block;
+  animation: wobble 1.1s ease-in-out infinite;
+}
+h2:hover, h3:hover, .card:hover, .tip:hover, .chip:hover { animation-play-state: paused; }
+
+p, li { text-wrap: pretty; }
+p { margin: 0 0 12px; }
+ul, ol { margin: 0 0 12px; padding-left: 28px; }
+li { margin-bottom: 8px; }
+li::marker { font-size: 1.4em; color: var(--red); }
+b, strong { background: var(--yellow); color: var(--red); padding: 0 4px; }
+code {
+  font-family: var(--font-pixel);
+  font-size: 0.7em;
+  background: var(--black);
+  color: var(--acid);
+  padding: 3px 6px;
+  border: 2px solid var(--hot-pink);
+}
+
+/* cards */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+  gap: 22px;
+  padding: 10px;
+}
+.card {
+  min-width: 0;
+  padding: 14px;
+  border: 10px ridge var(--red);
+  color: var(--black);
+  background: linear-gradient(160deg, var(--yellow), var(--cyan));
+  animation: wobble 2.4s ease-in-out infinite, borders 1.3s linear infinite;
+}
+.card:nth-child(2) { background: linear-gradient(160deg, var(--acid), var(--hot-pink)); animation-duration: 1.9s, 1.3s; animation-direction: reverse, normal; }
+.card:nth-child(3) { background: linear-gradient(160deg, var(--orange), var(--purple)); color: var(--white); animation-duration: 2.9s, 1.3s; }
+.card:nth-child(4) { background: linear-gradient(160deg, var(--blue), var(--acid)); color: var(--yellow); animation-duration: 1.6s, 1.3s; animation-direction: reverse, normal; }
+.card h3 { display: block; font-size: 30px; text-shadow: 3px 3px 0 var(--white); color: var(--red); }
+.card:nth-child(3) h3, .card:nth-child(4) h3 { text-shadow: 3px 3px 0 var(--black); }
+.card li::marker { color: var(--black); }
+.card b { color: var(--blue); }
+.card .label {
+  display: block;
+  margin: 10px 0 4px;
+  font-family: var(--font-pixel);
+  font-size: 11px;
+  line-height: 1.5;
+  color: var(--acid);
+  background: var(--black);
+  padding: 4px 6px;
+  width: fit-content;
+  max-width: 100%;
+}
+
+.routes { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 12px; padding: 0; list-style: none; }
+.chip {
+  margin: 0;
+  padding: 8px 12px;
+  font-family: var(--font-pixel);
+  font-size: 12px;
+  line-height: 1.4;
+  color: var(--yellow);
+  background: var(--black);
+  border: 4px dotted var(--hot-pink);
+  animation: wobble 1.3s ease-in-out infinite;
+}
+.chip:nth-child(even) { color: var(--black); background: var(--cyan); border-color: var(--red); animation-direction: reverse; }
+
+.tip {
+  margin: 14px 0;
+  padding: 12px;
+  font-weight: 700;
+  border: 8px dashed var(--black);
+  background: var(--white);
+  color: var(--red);
+  animation: wobble 1.7s ease-in-out infinite;
+}
+.tip.bad { background: var(--red); color: var(--yellow); border-color: var(--yellow); }
+.tip.good { background: var(--blue); color: var(--acid); border-color: var(--hot-pink); }
+
+.steps { list-style: none; padding: 0; counter-reset: s; }
+.steps li {
+  counter-increment: s;
+  padding: 10px 10px 10px 74px;
+  position: relative;
+  margin-bottom: 12px;
+  border: 5px solid currentColor;
+  background: var(--black);
+  color: var(--cyan);
+}
+.steps li::before {
+  content: counter(s);
+  position: absolute;
+  left: 8px;
+  top: 8px;
+  width: 52px;
+  height: 52px;
+  display: grid;
+  place-items: center;
+  font-family: var(--font-pixel);
+  font-size: 22px;
+  color: var(--black);
+  background: var(--yellow);
+  border-radius: 50%;
+  animation: spin 2s linear infinite;
+}
+.steps b { background: var(--hot-pink); color: var(--white); }
+
+/* long item lists */
+.biglist {
+  columns: 2 220px;
+  column-gap: 18px;
+  margin: 0 0 12px;
+  padding: 12px 12px 12px 36px;
+  background: var(--white);
+  color: var(--blue);
+  border: 6px double var(--red);
+}
+.biglist li { break-inside: avoid; margin-bottom: 4px; font-size: 17px; }
+.biglist li::marker { color: var(--hot-pink); }
+.biglist.red { background: var(--black); color: var(--yellow); border-color: var(--cyan); }
+
+.glossary { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap: 10px; }
+.glossary div { padding: 8px; background: var(--white); color: var(--purple); border: 4px dotted var(--red); min-width: 0; }
+.glossary div:nth-child(odd) { background: var(--black); color: var(--yellow); border-color: var(--cyan); }
+.glossary dt { font-weight: 700; font-family: var(--font-pixel); font-size: 12px; line-height: 1.5; color: var(--hot-pink); background: none; }
+.glossary dd { margin: 4px 0 0; }
+
+footer {
+  text-align: center;
+  padding: 16px;
+  font-family: var(--font-pixel);
+  font-size: 12px;
+  line-height: 1.8;
+  color: var(--yellow);
+  background: var(--black);
+  border: 10px double var(--hot-pink);
+  animation: flash 1s steps(1) infinite;
+}
+footer .big { display: inline-block; font-size: 40px; animation: spin 1s linear infinite; }
+
+@media (max-width: 480px) {
+  body { font-size: 17px; }
+  .steps li { padding-left: 66px; }
+  .spinner-row { font-size: 34px; gap: 10px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; scroll-behavior: auto !important; }
+}
+</style>
+
+<div class="wrap">
+
+  <div class="langbar" role="group" aria-label="Language / Язык">
+    <button type="button" id="btn-en" aria-pressed="true">ENGLISH</button>
+    <button type="button" id="btn-ru" aria-pressed="false">РУССКИЙ</button>
+  </div>
+
+  <div class="ticker" aria-hidden="true">
+    <span class="en">GOLD!!! PEARLS!!! DON'T FALL IN LAVA!!! WEAR A GOLD HELMET!!! BARTER BARTER BARTER!!! GO GO GO!!!</span>
+    <span class="ru">ЗОЛОТО!!! ЖЕМЧУГ!!! НЕ ПАДАЙ В ЛАВУ!!! НАДЕНЬ ЗОЛОТОЙ ШЛЕМ!!! ОБМЕН ОБМЕН ОБМЕН!!! БЫСТРЕЕ!!!</span>
+  </div>
+
+  <header class="hero">
+    <h1><span class="en">BASTION SPEEDRUN HELL</span><span class="ru">БАСТИОН СПИДРАН АД</span></h1>
+    <p class="sub">
+      <span class="en">Loot a bastion fast. Your eyes will hurt. That is the point.</span>
+      <span class="ru">Лутай бастион быстро. Глазам будет больно. Так и задумано.</span>
+    </p>
+    <div><span class="version">JAVA 1.16.1</span></div>
+    <div class="spinner-row" aria-hidden="true"><span>🟨</span><span>🐷</span><span>🔥</span><span>🟣</span><span>💀</span><span>🟨</span></div>
+  </header>
+
+  <p class="hint">
+    <span class="en"><span class="blink">!!</span> Headings and cards spin. Hover over one to freeze it so you can read. <span class="blink">!!</span></span>
+    <span class="ru"><span class="blink">!!</span> Заголовки и карточки крутятся. Наведи курсор, чтобы остановить и прочитать. <span class="blink">!!</span></span>
+  </p>
+
+  <section id="goal">
+    <h2><span class="en">WHY BASTIONS?</span><span class="ru">ЗАЧЕМ БАСТИОН?</span></h2>
+    <p>
+      <span class="en">To beat the Ender Dragon you must find a stronghold, and that needs <b>Eyes of Ender</b>. Each eye is a blaze powder plus an <b>ender pearl</b>. Blaze powder comes from fortress blazes. Pearls mostly come from <b>bartering with piglins</b>, and piglins live in bastions.</span>
+      <span class="ru">Чтобы победить Дракона Края, нужно найти крепость, а для этого нужны <b>Очи Края</b>. Каждое око это огненный порошок плюс <b>жемчуг Края</b>. Порошок падает с ифритов в крепости. Жемчуг в основном получают <b>обменом с пиглинами</b>, а пиглины живут в бастионах.</span>
+    </p>
+    <p>
+      <span class="en">So the whole job of a bastion is simple: <b>get as much gold as possible, as fast as possible</b>, trade it for the items you need, and leave. In the best case you walk out with <b>2 stacks of pearls (32)</b>.</span>
+      <span class="ru">Вся задача бастиона проста: <b>набрать как можно больше золота как можно быстрее</b>, обменять его на нужные предметы и уйти. В лучшем случае ты выходишь с <b>2 стаками жемчуга (32)</b>.</span>
+    </p>
+    <div class="tip good">
+      <span class="en">Everything on this page is for Java 1.16.1 only. This is the version used for the main random seed glitchless category.</span>
+      <span class="ru">Всё на этой странице только для Java 1.16.1. Это версия основной категории random seed glitchless.</span>
+    </div>
+  </section>
+
+  <section id="gear">
+    <h2><span class="en">GEAR UP</span><span class="ru">СНАРЯЖЕНИЕ</span></h2>
+    <div class="cards">
+      <div class="card">
+        <h3><span class="en">Must have</span><span class="ru">Обязательно</span></h3>
+        <ul>
+          <li><span class="en"><b>Iron pickaxe</b> to mine gold blocks. Stone is not enough.</span><span class="ru"><b>Железная кирка</b>, чтобы ломать золотые блоки. Каменной мало.</span></li>
+          <li><span class="en"><b>Blocks</b>, 64 cobblestone or netherrack, for bridging over lava.</span><span class="ru"><b>Блоки</b>, 64 булыжника или адского камня, для мостов над лавой.</span></li>
+          <li><span class="en"><b>Food</b> that heals a lot, like cooked porkchops.</span><span class="ru"><b>Еда</b>, которая хорошо лечит, например жареная свинина.</span></li>
+          <li><span class="en"><b>Flint and steel</b> if you still need a portal.</span><span class="ru"><b>Огниво</b>, если ещё нужен портал.</span></li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3><span class="en">Gold helmet</span><span class="ru">Золотой шлем</span></h3>
+        <p>
+          <span class="en">Wearing <b>any piece of gold armor</b> makes most piglins ignore you. A helmet costs 5 ingots, and each ingot is one barter try you do not get. Many runners wear one, some skip it and move fast instead. Decide before you enter.</span>
+          <span class="ru">Если носишь <b>любую часть золотой брони</b>, большинство пиглинов тебя игнорируют. Шлем стоит 5 слитков, и каждый слиток это одна попытка обмена, которой у тебя уже не будет. Многие раннеры его надевают, некоторые обходятся без него и просто двигаются быстро. Реши до входа.</span>
+        </p>
+      </div>
+      <div class="card">
+        <h3><span class="en">Nice to have</span><span class="ru">Хорошо бы</span></h3>
+        <ul>
+          <li><span class="en">A sword to kill hoglins or trapped piglins.</span><span class="ru">Меч, чтобы убивать хоглинов или загнанных пиглинов.</span></li>
+          <li><span class="en">An axe for chests and wood fast.</span><span class="ru">Топор, чтобы быстро ломать сундуки и дерево.</span></li>
+          <li><span class="en">Fire resistance potion if you got one.</span><span class="ru">Зелье огнестойкости, если оно есть.</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="piglins">
+    <h2><span class="en">PIGLIN RULES</span><span class="ru">ПРАВИЛА ПИГЛИНОВ</span></h2>
+    <ul>
+      <li><span class="en"><b>Gold armor</b>: piglins stay calm while you wear at least one piece.</span><span class="ru"><b>Золотая броня</b>: пиглины спокойны, пока на тебе есть хотя бы одна часть.</span></li>
+      <li><span class="en"><b>Opening chests</b> angers piglins that are within about 15 blocks and can see you, even if you wear gold.</span><span class="ru"><b>Открытие сундуков</b> злит пиглинов, которые стоят примерно в 15 блоках и видят тебя, даже если на тебе золото.</span></li>
+      <li><span class="en"><b>Breaking some blocks</b> angers piglins within 16 blocks of you, with no line of sight needed. The full list is below.</span><span class="ru"><b>Ломание некоторых блоков</b> злит пиглинов в радиусе 16 блоков, и прямая видимость не нужна. Полный список ниже.</span></li>
+      <li><span class="en"><b>Hoglins</b> never care about gold armor. They hit hard and knock you back, often into lava.</span><span class="ru"><b>Хоглинам</b> всё равно на золотую броню. Они бьют сильно и отбрасывают, часто прямо в лаву.</span></li>
+      <li><span class="en">There are no piglin brutes in 1.16.1, so regular piglins are the only ones you can calm with gold armor.</span><span class="ru">В 1.16.1 нет брутальных пиглинов, так что остужать золотой бронёй нужно только обычных.</span></li>
+      <li><span class="en">Hitting a piglin angers the ones around it too, even without line of sight.</span><span class="ru">Если ударить пиглина, злятся и те, кто рядом, даже без прямой видимости.</span></li>
+    </ul>
+    <div class="tip bad">
+      <span class="en">If three or more piglins are chasing you with crossbows, stop looting. Leave and try again. Dying wastes more time than skipping a chest.</span>
+      <span class="ru">Если за тобой гонятся три и больше пиглинов с арбалетами, прекращай лутать. Уходи и пробуй снова. Смерть тратит больше времени, чем пропущенный сундук.</span>
+    </div>
+  </section>
+
+  <section id="lists">
+    <h2><span class="en">TWO BIG LISTS</span><span class="ru">ДВА БОЛЬШИХ СПИСКА</span></h2>
+
+    <h3><span class="en">Items that distract piglins</span><span class="ru">Предметы, которые отвлекают пиглинов</span></h3>
+    <p>
+      <span class="en">Piglins want to pick these up and stop what they are doing:</span>
+      <span class="ru">Пиглины хотят подобрать эти предметы и отвлекаются от всего остального:</span>
+    </p>
+    <ul class="biglist">
+      <li><span class="en">Gold ingot</span><span class="ru">Золотой слиток</span></li>
+      <li><span class="en">Gold nugget</span><span class="ru">Золотой самородок</span></li>
+      <li><span class="en">Block of gold</span><span class="ru">Золотой блок</span></li>
+      <li><span class="en">Gold ore</span><span class="ru">Золотая руда</span></li>
+      <li><span class="en">Nether gold ore</span><span class="ru">Адская золотая руда</span></li>
+      <li><span class="en">Gilded blackstone</span><span class="ru">Золочёный чёрный камень</span></li>
+      <li><span class="en">Golden helmet</span><span class="ru">Золотой шлем</span></li>
+      <li><span class="en">Golden chestplate</span><span class="ru">Золотой нагрудник</span></li>
+      <li><span class="en">Golden leggings</span><span class="ru">Золотые поножи</span></li>
+      <li><span class="en">Golden boots</span><span class="ru">Золотые ботинки</span></li>
+      <li><span class="en">Golden sword</span><span class="ru">Золотой меч</span></li>
+      <li><span class="en">Golden axe</span><span class="ru">Золотой топор</span></li>
+      <li><span class="en">Golden pickaxe</span><span class="ru">Золотая кирка</span></li>
+      <li><span class="en">Golden shovel</span><span class="ru">Золотая лопата</span></li>
+      <li><span class="en">Golden hoe</span><span class="ru">Золотая мотыга</span></li>
+      <li><span class="en">Golden horse armor</span><span class="ru">Золотая броня для лошади</span></li>
+      <li><span class="en">Golden apple</span><span class="ru">Золотое яблоко</span></li>
+      <li><span class="en">Enchanted golden apple</span><span class="ru">Зачарованное золотое яблоко</span></li>
+      <li><span class="en">Golden carrot</span><span class="ru">Золотая морковь</span></li>
+      <li><span class="en">Glistering melon slice</span><span class="ru">Сверкающий ломтик арбуза</span></li>
+      <li><span class="en">Bell</span><span class="ru">Колокол</span></li>
+      <li><span class="en">Clock</span><span class="ru">Часы</span></li>
+      <li><span class="en">Light weighted pressure plate</span><span class="ru">Лёгкая нажимная плита</span></li>
+      <li><span class="en">Porkchop and cooked porkchop (adults pick them up only when they are very close, they do not go looking)</span><span class="ru">Свинина и жареная свинина (взрослые подбирают, только когда она совсем рядом, и специально не ищут)</span></li>
+    </ul>
+
+    <h3><span class="en">Blocks that anger piglins when you break them</span><span class="ru">Блоки, при ломании которых пиглины злятся</span></h3>
+    <ul class="biglist red">
+      <li><span class="en">Block of gold</span><span class="ru">Золотой блок</span></li>
+      <li><span class="en">Gold ore</span><span class="ru">Золотая руда</span></li>
+      <li><span class="en">Nether gold ore</span><span class="ru">Адская золотая руда</span></li>
+      <li><span class="en">Gilded blackstone</span><span class="ru">Золочёный чёрный камень</span></li>
+    </ul>
+    <p>
+      <span class="en">Opening a container also angers them: chest, trapped chest, ender chest, shulker box and barrel.</span>
+      <span class="ru">Открытие контейнера тоже злит их: сундук, сундук-ловушка, сундук Края, шалкер и бочка.</span>
+    </p>
+
+    <div class="tip">
+      <span class="en">I took these lists from the current wiki and removed what was added after 1.16.1: raw gold, block of raw gold, deepslate gold ore (all 1.17) and chest and hopper minecarts (1.16.2). The wiki does not date every single item, so check the ones you care about.</span>
+      <span class="ru">Я взял эти списки с актуальной вики и убрал то, что добавили после 1.16.1: сырое золото, блок сырого золота, глубинную золотую руду (всё 1.17) и вагонетки с сундуком и воронкой (1.16.2). Вики не указывает даты для каждого предмета, так что перепроверь важные для тебя.</span>
+    </div>
+  </section>
+
+  <section id="types">
+    <h2><span class="en">4 BASTION TYPES</span><span class="ru">4 ТИПА БАСТИОНОВ</span></h2>
+    <p>
+      <span class="en">Every bastion is one of four layouts. Learn to tell them apart on sight, because each one has its own routes. Here are the names of the routes, nothing more.</span>
+      <span class="ru">Каждый бастион это один из четырёх планов. Учись различать их с первого взгляда, потому что у каждого свои рауты. Здесь только названия раутов, и всё.</span>
+    </p>
+    <div class="cards">
+      <div class="card">
+        <h3><span class="en">Treasure</span><span class="ru">Сокровищница</span></h3>
+        <p><span class="en">Two main parts: the <b>ramparts</b> and the <b>bottom treasure</b>.</span><span class="ru">Две основные части: <b>рампы</b> и <b>нижняя сокровищница</b>.</span></p>
+        <span class="label"><span class="en">HOW TO SPOT IT</span><span class="ru">КАК УЗНАТЬ</span></span>
+        <ul>
+          <li><span class="en">Pools of lava below and a bridge over them.</span><span class="ru">Внизу бассейны лавы, над ними мост.</span></li>
+          <li><span class="en">On the right: a big block with flat walls.</span><span class="ru">Справа большой блок с ровными стенами.</span></li>
+          <li><span class="en">On the left: two pillars.</span><span class="ru">Слева две колонны.</span></li>
+          <li><span class="en">The wiki says the bottom has 13 to 19 gold blocks and 1 to 2 chests.</span><span class="ru">По вики, внизу от 13 до 19 золотых блоков и 1–2 сундука.</span></li>
+        </ul>
+        <span class="label"><span class="en">ROUTES: 1</span><span class="ru">РАУТЫ: 1</span></span>
+        <ul class="routes"><li class="chip">Boomer</li></ul>
+      </div>
+      <div class="card">
+        <h3><span class="en">Bridge</span><span class="ru">Мост</span></h3>
+        <p><span class="en">A two-layer bridge in the center and a rampart on the left and on the right.</span><span class="ru">По центру двуслойный мост, слева и справа рампы.</span></p>
+        <span class="label"><span class="en">HOW TO SPOT IT</span><span class="ru">КАК УЗНАТЬ</span></span>
+        <ul>
+          <li><span class="en">All the gold is in one place.</span><span class="ru">Всё золото в одном месте.</span></li>
+          <li><span class="en">The wiki says that place is the far end of the bridge: 16 gold blocks on a pillar, plus up to 4 in a nearby hallway.</span><span class="ru">По вики, это дальний конец моста: 16 золотых блоков на колонне и ещё до 4 в ближайшем коридоре.</span></li>
+        </ul>
+        <span class="label"><span class="en">ROUTES: 3</span><span class="ru">РАУТЫ: 3</span></span>
+        <ul class="routes"><li class="chip">Donkey Kong</li><li class="chip">Right Triple</li><li class="chip">Mogul Hole</li></ul>
+      </div>
+      <div class="card">
+        <h3><span class="en">Housing</span><span class="ru">Жилые помещения</span></h3>
+        <p><span class="en">Two ramparts. The right one is <b>always a Triple</b> (a room with three chests).</span><span class="ru">Две рампы, правая <b>всегда Triple</b> (комната с тремя сундуками).</span></p>
+        <span class="label"><span class="en">HOW TO SPOT IT</span><span class="ru">КАК УЗНАТЬ</span></span>
+        <ul>
+          <li><span class="en">Below: a chest with soul sand.</span><span class="ru">Снизу сундук с песком душ.</span></li>
+          <li><span class="en">Between the chests of the Triple: <b>3 blocks</b>.</span><span class="ru">Между сундуками трипла <b>3 блока</b>.</span></li>
+          <li><span class="en">The wiki also says there is a courtyard with nether wart, and 9 gold blocks and a double chest under the right rampart.</span><span class="ru">По вики, ещё есть двор с адскими наростами, а под правой рампой 9 золотых блоков и двойной сундук.</span></li>
+        </ul>
+        <span class="label"><span class="en">ROUTES: 2</span><span class="ru">РАУТЫ: 2</span></span>
+        <ul class="routes"><li class="chip">Manhunt</li><li class="chip">Top-Down</li></ul>
+      </div>
+      <div class="card">
+        <h3><span class="en">Hoglin Stables</span><span class="ru">Стойла для хоглинов</span></h3>
+        <p><span class="en">Looks like Housing. <b>Easy to mix up with it.</b></span><span class="ru">Похоже на жилище. <b>Легко перепутать с ним.</b></span></p>
+        <span class="label"><span class="en">HOW TO SPOT IT</span><span class="ru">КАК УЗНАТЬ</span></span>
+        <ul>
+          <li><span class="en"><b>Three ramparts</b>, while Housing has two.</span><span class="ru"><b>Три рампы</b>, а у жилища две.</span></li>
+          <li><span class="en">Between the chests of the Triple: <b>2 blocks</b>, while Housing has 3.</span><span class="ru">Между сундуками трипла <b>2 блока</b>, а у жилища 3.</span></li>
+          <li><span class="en">Good and bad "gaps" on the left and on the right.</span><span class="ru">Слева и справа хорошие и плохие «гэпы».</span></li>
+          <li><span class="en">The wiki says the lower side parts hold either a chest or 6 to 11 gold blocks, and hoglins spawn here.</span><span class="ru">По вики, в нижних боковых частях либо сундук, либо от 6 до 11 золотых блоков, а ещё здесь спавнятся хоглины.</span></li>
+        </ul>
+        <span class="label"><span class="en">ROUTES: 10000000000 (it is really 1)</span><span class="ru">РАУТЫ: 10000000000 (на самом деле 1)</span></span>
+      </div>
+    </div>
+  </section>
+
+  <section id="gold">
+    <h2><span class="en">WHERE IS GOLD</span><span class="ru">ГДЕ ЗОЛОТО</span></h2>
+    <ul>
+      <li><span class="en"><b>Gold blocks</b>: one block is 9 ingots. The best value in the whole structure.</span><span class="ru"><b>Золотые блоки</b>: один блок это 9 слитков. Лучшая добыча во всём здании.</span></li>
+      <li><span class="en"><b>Chests</b>: gold ingots, golden gear and other loot.</span><span class="ru"><b>Сундуки</b>: золотые слитки, золотые вещи и другой лут.</span></li>
+      <li><span class="en"><b>Gilded blackstone</b> drops gold nuggets, but breaking it angers piglins. Nobody crafts nuggets into ingots, so do not bother.</span><span class="ru"><b>Золочёный чёрный камень</b> роняет золотые самородки, но его ломание злит пиглинов. Никто не крафтит из самородков слитки, так что не трать на это время.</span></li>
+    </ul>
+    <div class="tip good">
+      <span class="en">A gold block that sits next to piglins? Look around first, then mine it. Breaking it angers every piglin within 16 blocks, even with a gold helmet on.</span>
+      <span class="ru">Золотой блок рядом с пиглинами? Сначала оглядись, потом ломай. Его ломание злит всех пиглинов в радиусе 16 блоков, даже если на тебе золотой шлем.</span>
+    </div>
+  </section>
+
+  <section id="barter">
+    <h2><span class="en">BARTERING</span><span class="ru">ОБМЕН</span></h2>
+
+    <h3><span class="en">What you want from piglins</span><span class="ru">Что нужно от пиглинов</span></h3>
+    <ul class="biglist">
+      <li><span class="en"><b>Ender pearls</b>: 2 stacks (32) is ideal</span><span class="ru"><b>Жемчуг Края</b>: 2 стака (32) идеально</span></li>
+      <li><span class="en"><b>Obsidian</b>: 20</span><span class="ru"><b>Обсидиан</b>: 20</span></li>
+      <li><span class="en"><b>String</b></span><span class="ru"><b>Нитки</b></span></li>
+      <li><span class="en"><b>Blocks</b>: soul sand, gravel</span><span class="ru"><b>Блоки</b>: песок душ, гравий</span></li>
+      <li><span class="en"><b>Fire resistance potions</b>: 3 or more</span><span class="ru"><b>Зелья огнестойкости</b>: 3 и больше</span></li>
+      <li><span class="en"><b>Crying obsidian</b></span><span class="ru"><b>Плачущий обсидиан</b></span></li>
+      <li><span class="en"><b>Glowstone dust</b></span><span class="ru"><b>Светокаменная пыль</b></span></li>
+    </ul>
+    <div class="tip bad">
+      <span class="en">Everything else is not needed. Leave it on the floor.</span>
+      <span class="ru">Всё остальное не нужно. Оставляй на полу.</span>
+    </div>
+
+    <h3><span class="en">How to trade</span><span class="ru">Как обменивать</span></h3>
+    <ol class="steps">
+      <li><span class="en"><b>Craft</b> your gold blocks into ingots. One block gives 9 ingots.</span><span class="ru"><b>Скрафти</b> слитки из золотых блоков. Один блок даёт 9 слитков.</span></li>
+      <li><span class="en"><b>Pick a calm piglin</b>, one that is not angry and not in a crowd.</span><span class="ru"><b>Выбери спокойного пиглина</b>, не злого и не в толпе.</span></li>
+      <li><span class="en"><b>Throw one ingot</b> at it with the drop key. In Java the piglin looks at it for 6 seconds before it gives you something.</span><span class="ru"><b>Брось один слиток</b> в него клавишей выброса. В Java пиглин разглядывает его 6 секунд и только потом даёт предмет.</span></li>
+      <li><span class="en"><b>Keep throwing</b> ingots at other piglins while the first one thinks. Stay close so you can pick up the result.</span><span class="ru"><b>Продолжай бросать</b> слитки другим пиглинам, пока первый думает. Оставайся рядом, чтобы подобрать результат.</span></li>
+      <li><span class="en"><b>Pick up only what is on the list</b> above. Pearls first.</span><span class="ru"><b>Подбирай только то, что в списке</b> выше. Сначала жемчуг.</span></li>
+    </ol>
+    <p>
+      <span class="en">In 1.16.1 pearls come in stacks of 4 to 8 per successful trade, and the wiki says you need about 3.5 ingots per pearl on average. That works out to about 4.7% per trade (my own math from the wiki's number). So 2 stacks of pearls is the best case, and you take whatever the dice give you.</span>
+      <span class="ru">В 1.16.1 за удачный обмен падает от 4 до 8 жемчужин, и по вики в среднем нужно около 3,5 слитка на жемчужину. Это примерно 4,7% за обмен (я сам посчитал по числу с вики). Так что 2 стака жемчуга это лучший случай, а берёшь ты то, что выпадет.</span>
+    </p>
+  </section>
+
+  <section id="route">
+    <h2><span class="en">THE ROUTE</span><span class="ru">МАРШРУТ</span></h2>
+    <ol class="steps">
+      <li><span class="en"><b>Scout with E-Ray</b> from the Nether spawn. If it says no bastion is near, reset.</span><span class="ru"><b>Ищи бастион через E-Ray</b> со спавна в Незере. Если он говорит, что бастиона рядом нет, делай ресет.</span></li>
+      <li><span class="en"><b>Approach</b> with blocks in hand and your helmet on, if you wear one.</span><span class="ru"><b>Подходи</b> с блоками в руке и в шлеме, если носишь его.</span></li>
+      <li><span class="en"><b>Identify the type</b> from the rampart shapes and chest counts. Pick your route.</span><span class="ru"><b>Определи тип</b> по форме рамп и числу сундуков. Выбери раут.</span></li>
+      <li><span class="en"><b>Grab gold</b>, chests first if safe, then blocks.</span><span class="ru"><b>Бери золото</b>, сначала сундуки если безопасно, потом блоки.</span></li>
+      <li><span class="en"><b>Barter</b> in a quiet corner away from hoglins.</span><span class="ru"><b>Меняй</b> в тихом углу подальше от хоглинов.</span></li>
+      <li><span class="en"><b>Leave</b> and go find a fortress for blaze rods.</span><span class="ru"><b>Уходи</b> и ищи крепость за огненными стержнями.</span></li>
+    </ol>
+  </section>
+
+  <section id="mistakes">
+    <h2><span class="en">DON'T DIE</span><span class="ru">НЕ УМРИ</span></h2>
+    <div class="cards">
+      <div class="card">
+        <h3><span class="en">Lava</span><span class="ru">Лава</span></h3>
+        <p><span class="en">The number one run killer. Never sprint blind near edges. Water does not work in the Nether, so carry blocks.</span><span class="ru">Убийца забегов номер один. Никогда не бегай вслепую у краёв. Вода в Нижнем мире не работает, носи блоки.</span></p>
+      </div>
+      <div class="card">
+        <h3><span class="en">Greed</span><span class="ru">Жадность</span></h3>
+        <p><span class="en">One more chest turns into three angry piglins. Know your limit and leave on time.</span><span class="ru">Ещё один сундук превращается в трёх злых пиглинов. Знай свой предел и уходи вовремя.</span></p>
+      </div>
+      <div class="card">
+        <h3><span class="en">Hoglins</span><span class="ru">Хоглины</span></h3>
+        <p><span class="en">They knock you into lava with one hit. Fight them with a wall behind you, never an edge.</span><span class="ru">Одним ударом отбрасывают в лаву. Дерись, когда за спиной стена, а не обрыв.</span></p>
+      </div>
+      <div class="card">
+        <h3><span class="en">Low health</span><span class="ru">Мало здоровья</span></h3>
+        <p><span class="en">Eat before you enter, not when you are at two hearts surrounded by crossbows.</span><span class="ru">Ешь до входа, а не когда у тебя два сердца и вокруг арбалеты.</span></p>
+      </div>
+    </div>
+  </section>
+
+  <section id="glossary">
+    <h2><span class="en">GLOSSARY</span><span class="ru">СЛОВАРЬ</span></h2>
+    <dl class="glossary">
+      <div><dt>E-Ray</dt><dd><span class="en">A way to find a bastion from the Nether spawn by reading a number on screen. Players say 20 to 60 means a bastion is near and 15 or less means it is far, so reset. It only sees bastions in loaded chunks, so render distance matters.</span><span class="ru">Способ найти бастион со спавна в Незере по числу на экране. Игроки говорят, что 20–60 значит бастион рядом, а 15 и меньше значит далеко, и надо делать ресет. Он видит только бастионы в загруженных чанках, поэтому важна дальность прорисовки.</span></dd></div>
+      <div><dt>RSG</dt><dd><span class="en">Random Seed Glitchless, the main speedrun category.</span><span class="ru">Random Seed Glitchless, основная категория спидрана.</span></dd></div>
+      <div><dt>Rampart</dt><dd><span class="en">A tower-like part of a bastion. Bastions have two or three.</span><span class="ru">Рампа, башнеобразная часть бастиона. В бастионе их две или три.</span></dd></div>
+      <div><dt>Triple</dt><dd><span class="en">A room with three chests.</span><span class="ru">Комната с тремя сундуками.</span></dd></div>
+      <div><dt>Route</dt><dd><span class="en">A fixed path through a bastion to its gold. Each type has its own.</span><span class="ru">Раут, заранее выученный путь по бастиону к золоту. У каждого типа свои.</span></dd></div>
+      <div><dt>Barter</dt><dd><span class="en">Trade gold ingots to piglins for random items.</span><span class="ru">Обмен золотых слитков у пиглинов на случайные предметы.</span></dd></div>
+      <div><dt>Gilded blackstone</dt><dd><span class="en">A block that drops gold nuggets and angers piglins when broken.</span><span class="ru">Блок, который роняет золотые самородки и злит пиглинов при ломании.</span></dd></div>
+      <div><dt>Eye / Eye of Ender</dt><dd><span class="en">Pearl plus blaze powder. Points to the stronghold.</span><span class="ru">Жемчуг плюс огненный порошок. Указывает на крепость.</span></dd></div>
+      <div><dt>Reset</dt><dd><span class="en">Abandon a bad seed and start a new world.</span><span class="ru">Бросить неудачный сид и начать новый мир.</span></dd></div>
+    </dl>
+  </section>
+
+  <footer>
+    <span class="big" aria-hidden="true">🟨</span><br>
+    <span class="en">YOU FINISHED THE GUIDE. NOW GO LOOT. GOOD LUCK. YOU WILL NEED IT.</span>
+    <span class="ru">ТЫ ДОЧИТАЛ ГАЙД. ТЕПЕРЬ ИДИ ЛУТАЙ. УДАЧИ. ОНА ТЕБЕ ПРИГОДИТСЯ.</span>
+  </footer>
+
+</div>
+
+<script>
+(function () {
+  var root = document.documentElement;
+  var btnEn = document.getElementById("btn-en");
+  var btnRu = document.getElementById("btn-ru");
+
+  function setLang(lang) {
+    root.setAttribute("data-lang", lang);
+    root.setAttribute("lang", lang);
+    btnEn.setAttribute("aria-pressed", String(lang === "en"));
+    btnRu.setAttribute("aria-pressed", String(lang === "ru"));
+    try { localStorage.setItem("bastion-lang", lang); } catch (e) {}
+  }
+
+  var start = "en";
+  try {
+    var saved = localStorage.getItem("bastion-lang");
+    if (saved === "en" || saved === "ru") start = saved;
+    else if ((navigator.language || "").toLowerCase().indexOf("ru") === 0) start = "ru";
+  } catch (e) {}
+
+  btnEn.addEventListener("click", function () { setLang("en"); });
+  btnRu.addEventListener("click", function () { setLang("ru"); });
+  setLang(start);
+})();
+</script>
+
+</body></html>
